@@ -1,4 +1,4 @@
-package ru.stek.test.verevkin;
+package ru.stack.test.verevkin;
 
 import org.junit.jupiter.api.Test;
 

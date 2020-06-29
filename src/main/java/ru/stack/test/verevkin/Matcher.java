@@ -1,4 +1,4 @@
-package ru.stek.test.verevkin;
+package ru.stack.test.verevkin;
 
 /**
  * @author Kirill Verevkin

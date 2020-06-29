@@ -1,9 +1,6 @@
 package ru.stack.test.verevkin.task1_2;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * @author Kirill Verevkin
@@ -210,14 +207,66 @@ class TaskFinder {
 
 
     static Optional<Node> findTaskHavingMaxPriorityInGroup(Node tasks, int groupId) {
-        // ------------------------------------------------------------------------------------------------
-        // Решение задачи 2
-        // ------------------------------------------------------------------------------------------------
+
+        Node maxPriority;
+
+        if (tasks.id == groupId){
+            maxPriority = recursiveTree(tasks.children, null);
+            return (maxPriority == null) ? Optional.empty() : Optional.of(maxPriority);
+        } else {
+            Node group = findGroupById(tasks.children, groupId);
+            if (group == null){
+                throw new IllegalArgumentException("Группа с таким идентификатором не найдена");
+            }
+            maxPriority = recursiveTree(group.children, null);
+            return (maxPriority == null) ? Optional.empty() : Optional.of(maxPriority);
+        }
+
+    }
+
+    private static Node findGroupById(List<Node> tasks, int groupId) {
+
+        Node findGroup;
+
+        for (Node group: tasks){
+            if (!group.isGroup()) {
+                continue;
+            }
+
+            if (group.id == groupId) {
+                return group;
+            } else {
+                findGroup = findGroupById(group.children, groupId);
+                if (findGroup != null){
+                    return findGroup;
+                }
+            }
+        }
 
         return null;
 
     }
 
+    private static Node recursiveTree(List<Node> children, Node maxPriorityTask) {
+
+        for (Node task : children){
+            if (task.isGroup()){
+                maxPriorityTask = recursiveTree(task.children, maxPriorityTask);
+            } else {
+                if (maxPriorityTask == null){
+                    maxPriorityTask = task;
+                    continue;
+                }
+
+                if (maxPriorityTask.priority < task.priority) {
+                    maxPriorityTask = task;
+                }
+            }
+        }
+
+        return maxPriorityTask;
+
+    }
 
     static void testFindTaskHavingMaxPriorityInGroup() {
         TestRunner runner = new TestRunner("findTaskHavingMaxPriorityInGroup");
@@ -240,6 +289,6 @@ class TaskFinder {
 class Main {
     public static void main(String args[]) {
         Matcher.testMatch();
-        //TaskFinder.testFindTaskHavingMaxPriorityInGroup();
+        TaskFinder.testFindTaskHavingMaxPriorityInGroup();
     }
 }

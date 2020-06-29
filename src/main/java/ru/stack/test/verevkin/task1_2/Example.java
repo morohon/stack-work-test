@@ -208,18 +208,14 @@ class TaskFinder {
 
     static Optional<Node> findTaskHavingMaxPriorityInGroup(Node tasks, int groupId) {
 
-        Node maxPriority;
-
         if (tasks.id == groupId){
-            maxPriority = recursiveTree(tasks.children, null);
-            return (maxPriority == null) ? Optional.empty() : Optional.of(maxPriority);
+            return Optional.ofNullable(recursiveTree(tasks.children, null));
         } else {
             Node group = findGroupById(tasks.children, groupId);
             if (group == null){
                 throw new IllegalArgumentException("Группа с таким идентификатором не найдена");
             }
-            maxPriority = recursiveTree(group.children, null);
-            return (maxPriority == null) ? Optional.empty() : Optional.of(maxPriority);
+            return Optional.ofNullable(recursiveTree(group.children, null));
         }
 
     }

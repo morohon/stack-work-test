@@ -1,5 +1,6 @@
-package ru.stack.test.verevkin;
+package ru.stack.test.verevkin.task1;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,7 +13,7 @@ class MatcherTest {
     @Test
     void matcher() {
 
-        assertFalse(Matcher.match("xy", "a"));
+        Assertions.assertFalse(Matcher.match("xy", "a"));
         assertFalse(Matcher.match("x", "d"));
         assertFalse(Matcher.match("0", "a"));
         assertFalse(Matcher.match("*", " "));

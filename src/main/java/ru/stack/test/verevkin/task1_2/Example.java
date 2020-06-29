@@ -71,6 +71,23 @@ class Matcher {
     public static final char CHAR_WHITESPACE = ' ';
     public static final char CHAR_SMALL_LETTER_OR_DIGIT = '*';
 
+    /**
+     * Метод осуществляет проверку соответствия переданной строки шаблону.
+     * Проверка осуществляется по количетсву символов (количество символов шаблона должно совпадать
+     * с количеством символов сообщения), а также по типам символов описанным для параметра {@code pattern}
+     * @param message
+     *        Сообщение, которое необходимо проверить
+     * @param pattern
+     *        Шаблон проверки сообщения. Может содержать в себе следующие символы:
+     *        <ul>
+     *            <li><b>a</b> - строчная латинская буква (a-z)</li>
+     *            <li><b>d</b> - цифра 0-9</li>
+     *            <li><b>*</b> - строчная латинская буква (a-z) ИЛИ цифра 0-9</li>
+     *            <li><b>' '</b> - пробел</li>
+     *        </ul>
+     * @throws IllegalArgumentException - передан не поддерживаемый шаблон сообщения.
+     * @return {@code true} Если строка соответствует шаблону
+     */
     static boolean match(String message, String pattern) {
         if (message.length() != pattern.length()){
             return false;

@@ -206,6 +206,18 @@ class TaskFinder {
                     group(12, "Аналитика"));
 
 
+    /**
+     * Метод осуществляет поиск задачу максимального приоритета в переданном дереве и группе с учетом
+     * возможной вложенности.
+     * @param tasks
+     *        дерево задач (узлы - группы, листья - задачи с приоритетом)
+     * @param groupId
+     *        идентификатор группы в которой необходимо осуществить поиск
+     * @throws IllegalArgumentException
+     *         При указании идентификатора
+     * @return {@code Optional<Node>}
+     *         Задача с максимальным приоритетом (или пустой {@code Optional} в случае ее отсутствия)
+     */
     static Optional<Node> findTaskHavingMaxPriorityInGroup(Node tasks, int groupId) {
 
         if (tasks.id == groupId){

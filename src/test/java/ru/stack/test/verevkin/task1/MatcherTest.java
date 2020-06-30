@@ -13,7 +13,7 @@ class MatcherTest {
     @Test
     void matcher() {
 
-        Assertions.assertFalse(Matcher.match("xy", "a"));
+        assertFalse(Matcher.match("xy", "a"));
         assertFalse(Matcher.match("x", "d"));
         assertFalse(Matcher.match("0", "a"));
         assertFalse(Matcher.match("*", " "));

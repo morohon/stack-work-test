@@ -10,7 +10,7 @@
         <maven.compiler.source>11</maven.compiler.source>
     </properties>
 
-    <groupId>ru.stek</groupId>
+    <groupId>ru.stack</groupId>
     <artifactId>test.verevkin</artifactId>
     <version>1.0-SNAPSHOT</version>
     <dependencies>
